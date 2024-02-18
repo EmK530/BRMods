@@ -2,8 +2,8 @@
 	"name": "NativeResolution",
 	"namespace": "EmK530",
 	"version_number": "1.1.1",
-	"description": "A port of the Native Resolution Launcher that makes the game render resolution match your monitor.",
-	"website_url": "https://github.com/EmK530/EmK-Game-Mods/blob/main/Buckshot%20Roulette/Native%20Resolution%20Mod",
+	"description": "A mod that automatically updates the render resolution of the game to match your monitor.",
+	"website_url": "https://github.com/EmK530/BRMods/tree/main/BRML/NativeResolution",
 	"dependencies": [],
 	"extra": {
 		"godot": {
