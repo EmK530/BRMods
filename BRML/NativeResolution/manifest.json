@@ -1,0 +1,21 @@
+{
+	"name": "NativeResolution",
+	"namespace": "EmK530",
+	"version_number": "1.1.1",
+	"description": "A port of the Native Resolution Launcher that makes the game render resolution match your monitor.",
+	"website_url": "https://github.com/EmK530/EmK-Game-Mods/blob/main/Buckshot%20Roulette/Native%20Resolution%20Mod",
+	"dependencies": [],
+	"extra": {
+		"godot": {
+			"authors": ["EmK530"],
+			"tags": ["rendering", "quality"],
+			"description_rich": "",
+			"optional_dependencies": [],
+			"load_before": [],
+			"incompatibilities": [],
+			"compatible_mod_loader_version": ["6.2.0"],
+			"compatible_game_version": ["1.0.0","1.1.0"],
+			"config_schema": {}
+		}
+	}
+}
