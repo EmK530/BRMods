@@ -1,3 +1,6 @@
+v1.2.0 -> v1.3.0:
+Fixed fullscreen mode not forcing 16:9 aspect ratio.
+
 v1.1.1 -> v1.2.0:
 Fixed maximized mode not scaling UI properly.
 
