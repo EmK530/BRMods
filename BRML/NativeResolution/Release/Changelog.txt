@@ -1,3 +1,8 @@
+v1.3.0 -> v1.4.0:
+All resolutions now use content_scale_mode 1,
+previously did not work but now it does.
+Fixes certain fullscreen UI scaling issues.
+
 v1.2.0 -> v1.3.0:
 Fixed fullscreen mode not forcing 16:9 aspect ratio.
 
