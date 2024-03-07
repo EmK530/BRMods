@@ -1,6 +1,8 @@
+v1.4.0 -> v1.5.0:
+Upscaled posterization filter as it did not fully cover the top of the screen.
+
 v1.3.0 -> v1.4.0:
-All resolutions now use content_scale_mode 1,
-previously did not work but now it does.
+All resolutions now use content_scale_mode 1, previously did not work but now it does.
 Fixes certain fullscreen UI scaling issues.
 
 v1.2.0 -> v1.3.0:
