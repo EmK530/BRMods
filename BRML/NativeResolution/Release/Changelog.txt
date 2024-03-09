@@ -1,3 +1,8 @@
+v1.5.0 -> v2.0.0:
+Added a new Widescreen feature.
+Added a new Render Scale feature, currently this depends on Widescreen.
+Added a new config file system.
+
 v1.4.0 -> v1.5.0:
 Upscaled posterization filter as it did not fully cover the top of the screen.
 
