@@ -1,9 +1,9 @@
 {
 	"name": "NativeResolution",
 	"namespace": "EmK530",
-	"version_number": "1.5.0",
-	"description": "A mod that automatically updates the render resolution of the game to match your monitor.",
-	"website_url": "https://github.com/EmK530/BRMods/tree/main/BRML/NativeResolution",
+	"version_number": "2.0.0",
+	"description": "A mod that lets you unlock the game's render scale and aspect ratio.",
+	"website_url": "https://github.com/EmK530/BRMods/tree/main/BRML/GraphicsControl",
 	"dependencies": [],
 	"extra": {
 		"godot": {
