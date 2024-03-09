@@ -14,5 +14,6 @@ In there is a text file that you can modify.
 <b>Widescreen:</b><br>
 - Widescreen currently has a problem where 2D elements are stuck at the base resolution.<br>
 This will hopefully be solved in the future.<br>
-- The UI elements have not been modified in any way, the canvas has simply been centered to look better.
+- No part of the UI except the posterization has been modified so effects that block your screen don't cover everything.<br>
+This will hopefully be finished in the future.<br>
 - If your aspect ratio is less than 16:9 the UI sides will be cut off, no intention to work around.
