@@ -1,3 +1,6 @@
+v2.0.0 -> v2.1.0:
+Fixed the rest of the screen covering effects so viewblockers now actually block your vision in widescreen.
+
 v1.5.0 -> v2.0.0:
 Added a new Widescreen feature.
 Added a new Render Scale feature, currently this depends on Widescreen.
