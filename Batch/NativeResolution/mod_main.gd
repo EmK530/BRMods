@@ -10,6 +10,9 @@ var config = {
 }
 
 var firstrun = true
+var viewblocker_needed = false
+var viewblocker_made = false
+
 var copy_parent = "Camera/dialogue UI/viewblocker parent"
 var post_name = "Camera/post processing/posterization test"
 var viewBlocker = copy_parent+"/viewblocker"
@@ -28,10 +31,29 @@ func pr(tx):
     print("["+logname+"] "+tx)
 
 func safe_get(name):
+    if root.get_child_count() <= 2:
+        return false
     if root.get_child(2).has_node(name):
         return root.get_child(2).get_node(name)
     else:
         return false
+
+func create_viewblocker():
+    pr("Creating custom viewblocker for menu.")
+    var par = safe_get(copy_parent)
+    if par:
+        var blk = safe_get(viewBlocker)
+        if blk:
+            blk = blk.duplicate()
+            blk.name = "customBlock"
+            blk.color = Color(0,0,0,1)
+            blk.z_index = -1
+            par.add_child(blk)
+            viewblocker_made = true
+        else:
+            pr("[WARN] Could not find viewblocker in the first frame.")
+    else:
+        pr("[WARN] Could not find viewblocker parent in the first frame.")
 
 func _process(delta):
     if firstrun:
@@ -65,26 +87,16 @@ func _process(delta):
             file.store_string("\n# -1: Match window resolution\n# 1: 960x540 (Vanilla)\n# 1.5: 1440x810 (1.5x scale)\n# 2: 1920x1080 (2x scale)\n# 4: 3840x2160 (4x scale)\n#\n# And so on...")
             file.close()
         if config["wideScreen"]:
-            pr("Creating custom viewblocker for menu.")
-            var par = safe_get(copy_parent)
-            if par:
-                var blk = safe_get(viewBlocker)
-                if blk:
-                    blk = blk.duplicate()
-                    blk.name = "customBlock"
-                    blk.color = Color(0,0,0,1)
-                    blk.z_index = -1
-                    par.add_child(blk)
-                else:
-                    pr("[WARN] Could not find viewblocker in the first frame.")
-            else:
-                pr("[WARN] Could not find viewblocker parent in the first frame.")
+            viewblocker_needed = true
+            create_viewblocker()
         pr("Ready for action.")
         change_scene_to_file('res://scenes/menu.tscn');
         if config["upscaleResolution"]:
             root.content_scale_mode=1
     else:
         if config["wideScreen"]:
+            if viewblocker_needed and not viewblocker_made:
+                create_viewblocker()
             if not title_passed:
                 var blk = safe_get(customBlock)
                 if blk:
