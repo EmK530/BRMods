@@ -30,6 +30,8 @@ func pr(tx):
     ModLoaderLog.info(tx,logname)
 
 func safe_get(name):
+    if root.get_child_count() <= 2:
+        return false
     if root.get_child(2).has_node(name):
         return root.get_child(2).get_node(name)
     else:
@@ -96,9 +98,9 @@ func _process(delta):
             var sz = root.get_size()
             var szX = float(sz[0])
             var szY = float(sz[1])
-            var mul = (540.0/szY) * (config["renderScale"])
+            var mul = 540.0/(540*config["renderScale"])
             if config["renderScale"] == -1:
-                mul = 1
+                mul = 0.5
             var aspectX = szX/szY
             var canvSize = szY/540.0*mul
             var relAspX = (aspectX-(16.0/9.0))
