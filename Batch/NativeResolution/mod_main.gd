@@ -21,7 +21,8 @@ var forceCoverTargets = [
     post_name,
     viewBlocker,
     copy_parent+"/viewblcoker", # lmao
-    customBlock
+    customBlock,
+    "Camera/post processing/opengl post processing"
 ]
 var ratchet = copy_parent+"/ratchet"
 
