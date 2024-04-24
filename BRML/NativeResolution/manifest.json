@@ -1,7 +1,7 @@
 {
 	"name": "NativeResolution",
 	"namespace": "EmK530",
-	"version_number": "2.2.0",
+	"version_number": "2.3.1",
 	"description": "A mod that lets you unlock the game's render scale and aspect ratio.",
 	"website_url": "https://github.com/EmK530/BRMods/tree/main/BRML/GraphicsControl",
 	"dependencies": [],
