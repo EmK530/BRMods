@@ -119,11 +119,8 @@ func _process(delta):
             for i in forceCoverTargets:
                 var targ = safe_get(i)
                 if targ:
-                    var calcOffset = -10-relAspX*szX/2
-                    if calcOffset > -10:
-                        calcOffset = -10
-                    targ.position = Vector2(calcOffset,-10)
-                    targ.scale = Vector2(aspectX*2.0,1)
+                    targ.position = Vector2(-2147483647,-2147483647)
+                    targ.scale = Vector2(2147483647,2147483647)
         elif config["upscaleResolution"]:
             root.content_scale_factor=1
             var post = safe_get(forceCoverTargets[0])
