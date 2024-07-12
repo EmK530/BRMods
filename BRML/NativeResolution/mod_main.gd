@@ -33,8 +33,8 @@ func pr(tx):
 func safe_get(name):
     if root.get_child_count() <= 2:
         return false
-    if root.get_child(2).has_node(name):
-        return root.get_child(2).get_node(name)
+    if root.get_child(5).has_node(name):
+        return root.get_child(5).get_node(name)
     else:
         return false
 
