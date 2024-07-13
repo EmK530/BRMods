@@ -1,3 +1,6 @@
+v2.3.2 -> v2.3.3:
+Added a detection for returning to the main menu, so a viewblocker for the intro continues to be created.
+
 v2.3.1 -> v2.3.2:
 Fixed get_child failing due to changes with BRML.
 
