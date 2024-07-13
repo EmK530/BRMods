@@ -38,6 +38,8 @@ func safe_get(name):
     else:
         return false
 
+var lastScene = ""
+
 func _process(delta):
     if root == null:
         root = get_tree().get_root()
@@ -69,33 +71,38 @@ func _process(delta):
             file.store_string("\n# Enabling the setting will override upscaleResolution")
             file.store_string("\n# -1: Match window resolution\n# 1: 960x540 (Vanilla)\n# 1.5: 1440x810 (1.5x scale)\n# 2: 1920x1080 (2x scale)\n# 4: 3840x2160 (4x scale)\n#\n# And so on...")
             file.close()
-        if config["wideScreen"]:
-            pr("Creating custom viewblocker for menu.")
-            var par = safe_get(copy_parent)
-            if par:
-                var blk = safe_get(viewBlocker)
-                if blk:
-                    blk = blk.duplicate()
-                    blk.name = "customBlock"
-                    blk.color = Color(0,0,0,1)
-                    blk.z_index = -1
-                    par.add_child(blk)
-                else:
-                    pr("[WARN] Could not find viewblocker in the first frame.")
-            else:
-                pr("[WARN] Could not find viewblocker parent in the first frame.")
         pr("Ready for action.")
         if config["upscaleResolution"]:
             root.content_scale_mode=1
     else:
+        var curScene = get_tree().get_current_scene().name
+        if curScene != lastScene and curScene == "menu":
+            pr("Detected menu start, creating custom viewblocker.")
+            title_passed = false
+        lastScene = curScene
         if config["wideScreen"]:
             if not title_passed:
                 var blk = safe_get(customBlock)
+                if not blk:
+                    var par = safe_get(copy_parent)
+                    if par:
+                        blk = safe_get(viewBlocker)
+                        if blk:
+                            blk = blk.duplicate()
+                            blk.name = "customBlock"
+                            blk.color = Color(0,0,0,1)
+                            blk.z_index = -1
+                            par.add_child(blk)
+                        else:
+                            pr("[WARN] Could not find viewblocker in the first frame.")
+                    else:
+                        pr("[WARN] Could not find viewblocker parent in the first frame.")
                 if blk:
                     var rat = safe_get(ratchet)
                     if not rat.visible:
                         title_passed = true
                         blk.queue_free()
+                        pr("Removing custom viewblocker.")
             var sz = root.get_size()
             var szX = float(sz[0])
             var szY = float(sz[1])
