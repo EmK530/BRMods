@@ -40,7 +40,6 @@ func safe_get(name):
         return false
 
 func create_viewblocker():
-    pr("Creating custom viewblocker for menu.")
     var par = safe_get(copy_parent)
     if par:
         var blk = safe_get(viewBlocker)
@@ -55,6 +54,8 @@ func create_viewblocker():
             pr("[WARN] Could not find viewblocker in the first frame.")
     else:
         pr("[WARN] Could not find viewblocker parent in the first frame.")
+
+var lastScene = ""
 
 func _process(delta):
     if firstrun:
@@ -95,6 +96,13 @@ func _process(delta):
         if config["upscaleResolution"]:
             root.content_scale_mode=1
     else:
+        var curScene = get_current_scene().name
+        if curScene != lastScene and curScene == "menu":
+            pr("Detected menu start, creating custom viewblocker.")
+            title_passed = false
+            viewblocker_needed = true
+            viewblocker_made = false
+        lastScene = curScene
         if config["wideScreen"]:
             if viewblocker_needed and not viewblocker_made:
                 create_viewblocker()
@@ -121,6 +129,8 @@ func _process(delta):
                 if targ:
                     targ.position = Vector2(-2147483647,-2147483647)
                     targ.scale = Vector2(2147483647,2147483647)
+                #else:
+                    #print("[WARN] Safe_get failed for "+i)
         elif config["upscaleResolution"]:
             root.content_scale_factor=1
             var post = safe_get(forceCoverTargets[0])
