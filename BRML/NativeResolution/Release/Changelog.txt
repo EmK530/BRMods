@@ -1,5 +1,5 @@
 v2.3.3 -> v2.3.4:
-Maintained BRML compatibility and made so the mod toggles off in the Multiplayer lobby, due to errors.
+Maintained BRML compatibility and made so the mod toggles off in the Multiplayer lobby, due to UI bugs.
 
 v2.3.2 -> v2.3.3:
 Added a detection for returning to the main menu, so a viewblocker for the intro continues to be created.
