@@ -5,8 +5,8 @@ const logname = "NativeResolution"
 
 var config = {
     "upscaleResolution": true,
-    "wideScreen": false,
-    "renderScale": 1
+    "wideScreen": true,
+    "renderScale": -1
 }
 
 var firstrun = true
@@ -122,8 +122,14 @@ func _process(delta):
             var aspectX = szX/szY
             var canvSize = szY/540.0*mul
             var relAspX = (aspectX-(16.0/9.0))
-            root.content_scale_size = Vector2i(szX*mul,szY*mul)
-            root.set_canvas_transform(Transform2D(Vector2(canvSize,0),Vector2(0,canvSize),Vector2((relAspX/2.0)*szY*mul,0)))
+            if curScene == "mp_lobby":
+                root.content_scale_size = Vector2i(960,540)
+                root.set_canvas_transform(Transform2D(Vector2(1,0),Vector2(0,1),Vector2(0,0)))
+                root.content_scale_mode=2
+            else:
+                root.content_scale_size = Vector2i(szX*mul,szY*mul)
+                root.set_canvas_transform(Transform2D(Vector2(canvSize,0),Vector2(0,canvSize),Vector2((relAspX/2.0)*szY*mul,0)))
+                root.content_scale_mode=1
             for i in forceCoverTargets:
                 var targ = safe_get(i)
                 if targ:
