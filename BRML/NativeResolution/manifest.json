@@ -1,10 +1,10 @@
 {
 	"name": "NativeResolution",
 	"namespace": "EmK530",
-	"version_number": "2.3.3",
-	"description": "A mod that lets you unlock the game's render scale and aspect ratio.",
+	"version_number": "2.3.4",
+	"description": "NATIVERESOLUTION_DESC",
 	"website_url": "https://github.com/EmK530/BRMods/tree/main/BRML/NativeResolution",
-	"dependencies": [],
+	"dependencies": ["MSLaFaver-ModMenu"],
 	"extra": {
 		"godot": {
 			"authors": ["EmK530"],
@@ -13,9 +13,17 @@
 			"optional_dependencies": [],
 			"load_before": [],
 			"incompatibilities": [],
-			"compatible_mod_loader_version": ["6.2.0"],
-			"compatible_game_version": ["1.0.0","1.1.0","1.2.0","1.2.1","1.2.2"],
-			"config_schema": {}
+			"compatible_mod_loader_version": ["7.0.1"],
+			"compatible_game_version": ["1.2.2","2.2.0"],
+			"config_schema": {
+				"type": "object",
+				"properties": {
+					"unused": {
+						"type": "boolean",
+						"default": false
+					}
+				}
+			}
 		}
 	}
 }

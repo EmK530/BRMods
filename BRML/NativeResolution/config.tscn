@@ -1,0 +1,142 @@
+[gd_scene load_steps=9 format=3 uid="uid://dwg8se4pgbg0n"]
+
+[ext_resource type="Script" path="res://mods-unpacked/EmK530-NativeResolution/config.gd" id="1_3iirj"]
+[ext_resource type="Theme" uid="uid://du0qnxhio1y4q" path="res://mods-unpacked/MSLaFaver-ModMenu/assets/theme.tres" id="2_2nj76"]
+[ext_resource type="FontFile" uid="uid://vhj3kkn6yn8o" path="res://fonts/fake receipt.otf" id="3_2qi86"]
+[ext_resource type="FontFile" uid="uid://builq3tr6w060" path="res://fonts/DOTMATRI.TTF" id="4_45y2t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fja6u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_upju5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ovqt"]
+
+[sub_resource type="Theme" id="Theme_lxfxa"]
+LineEdit/font_sizes/font_size = 28
+LineEdit/fonts/font = ExtResource("4_45y2t")
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_fja6u")
+LineEdit/styles/normal = SubResource("StyleBoxEmpty_upju5")
+LineEdit/styles/read_only = SubResource("StyleBoxEmpty_8ovqt")
+
+[node name="config" type="Control" node_paths=PackedStringArray("widescreen_toggle", "renderscale_spinbox")]
+layout_mode = 3
+anchors_preset = 0
+offset_bottom = 40.0
+script = ExtResource("1_3iirj")
+widescreen_toggle = NodePath("widescreen/toggle_parent/widescreen_toggle")
+renderscale_spinbox = NodePath("renderscale/toggle_parent/renderscale_spinbox")
+
+[node name="widescreen" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_top = 160.0
+offset_right = 960.0
+offset_bottom = 200.0
+alignment = 1
+
+[node name="toggle_parent" type="Control" parent="widescreen"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+
+[node name="widescreen_toggle" type="CheckButton" parent="widescreen/toggle_parent"]
+layout_mode = 2
+offset_left = 4.0
+offset_right = 266.0
+offset_bottom = 138.0
+scale = Vector2(0.25, 0.25)
+theme = ExtResource("2_2nj76")
+
+[node name="label_parent" type="Control" parent="widescreen"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="widescreen_label" type="Label" parent="widescreen/label_parent"]
+layout_mode = 2
+offset_right = 72.0
+offset_bottom = 26.0
+scale = Vector2(0.76, 1)
+theme_override_fonts/font = ExtResource("3_2qi86")
+theme_override_font_sizes/font_size = 26
+text = "NATIVERESOLUTION_WIDESCREEN"
+
+[node name="renderscale" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_top = 200.0
+offset_right = 960.0
+offset_bottom = 240.0
+alignment = 1
+
+[node name="toggle_parent" type="Control" parent="renderscale"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+
+[node name="renderscale_spinbox" type="SpinBox" parent="renderscale/toggle_parent"]
+layout_mode = 2
+offset_left = -233.0
+offset_top = 3.0
+offset_right = 69.0
+offset_bottom = 32.0
+theme = SubResource("Theme_lxfxa")
+min_value = 1.0
+step = 0.5
+value = 1.0
+allow_greater = true
+alignment = 2
+custom_arrow_step = 0.5
+
+[node name="label_parent" type="Control" parent="renderscale"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="renderscale_label" type="Label" parent="renderscale/label_parent"]
+layout_mode = 2
+offset_right = 72.0
+offset_bottom = 26.0
+scale = Vector2(0.76, 1)
+theme_override_fonts/font = ExtResource("3_2qi86")
+theme_override_font_sizes/font_size = 26
+text = "NATIVERESOLUTION_RENDERSCALE"
+
+[node name="renderscale_desc" type="Label" parent="."]
+layout_mode = 0
+offset_left = 357.0
+offset_top = 249.0
+offset_right = 951.0
+offset_bottom = 309.0
+theme_override_fonts/font = ExtResource("4_45y2t")
+text = "NATIVERESOLUTION_RENDERSCALE_DESC"
+
+[node name="renderscale_desc1" type="Label" parent="."]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 315.0
+offset_right = 548.0
+offset_bottom = 338.0
+theme_override_fonts/font = ExtResource("4_45y2t")
+text = "NATIVERESOLUTION_RENDERSCALE_DESC1"
+
+[node name="renderscale_desc1_5" type="Label" parent="."]
+layout_mode = 0
+offset_left = 387.0
+offset_top = 332.0
+offset_right = 575.0
+offset_bottom = 355.0
+theme_override_fonts/font = ExtResource("4_45y2t")
+text = "NATIVERESOLUTION_RENDERSCALE_DESC1_5"
+
+[node name="renderscale_desc2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 398.0
+offset_top = 349.0
+offset_right = 571.0
+offset_bottom = 372.0
+theme_override_fonts/font = ExtResource("4_45y2t")
+text = "NATIVERESOLUTION_RENDERSCALE_DESC2"
+
+[node name="renderscale_desc4" type="Label" parent="."]
+layout_mode = 0
+offset_left = 398.0
+offset_top = 366.0
+offset_right = 575.0
+offset_bottom = 389.0
+theme_override_fonts/font = ExtResource("4_45y2t")
+text = "NATIVERESOLUTION_RENDERSCALE_DESC4"
