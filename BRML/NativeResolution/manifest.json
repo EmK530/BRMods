@@ -1,7 +1,7 @@
 {
 	"name": "NativeResolution",
 	"namespace": "EmK530",
-	"version_number": "2.3.4",
+	"version_number": "2.4.0",
 	"description": "NATIVERESOLUTION_DESC",
 	"website_url": "https://github.com/EmK530/BRMods/tree/main/BRML/NativeResolution",
 	"dependencies": ["MSLaFaver-ModMenu"],
