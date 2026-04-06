@@ -63,7 +63,7 @@ func _process(delta):
 				if blk:
 					blk = blk.duplicate()
 					blk.name = "customBlock"
-					blk.color = Color(0,0,0,1)
+					blk.color = Color.BLACK
 					blk.z_index = -1
 					par.add_child(blk)
 				else:
