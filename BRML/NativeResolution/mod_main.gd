@@ -63,7 +63,7 @@ func _process(delta):
 				if blk:
 					blk = blk.duplicate()
 					blk.name = "customBlock"
-					blk.color = Color(0,0,0,1)
+					blk.color = Color.BLACK
 					blk.z_index = -1
 					par.add_child(blk)
 				else:
@@ -80,11 +80,9 @@ func _process(delta):
 	var ratio = 16.0/9.0
 	
 	var sz = Vector2(root.get_size())
-	if not config["wideScreen"] or sz.x < sz.y * ratio:
+	if curScene == "mp_lobby" or not config["wideScreen"] or sz.x < sz.y * ratio:
 		sz.x = sz.y * ratio
 	var mul = config["renderScale"]
-	if config["renderScale"] == 0:
-		mul = 0.5
 	sz = sz * vanilla_size.y / sz.y
 	var aspectX = sz.x/sz.y
 	var canvSize = sz.y/float(vanilla_size.y)*mul
