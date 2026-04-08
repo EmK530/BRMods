@@ -6,6 +6,7 @@ const AUTHORNAME_MODNAME_LOG_NAME := "EmK530-NativeResolution:Main"
 const logname = "NativeResolution"
 
 const vanilla_size = Vector2(960,540)
+const MAX = 2147483647
 
 var config = {
 	"wideScreen": true,
@@ -26,6 +27,7 @@ var forceCoverTargets = [
 	"Camera/post processing/opengl post processing"
 ]
 var title_passed = false
+var portrait = false
 
 func pr(tx):
 	ModLoaderLog.info(tx,logname)
@@ -49,9 +51,13 @@ func _ready():
 
 func _process(delta):
 	var curScene = get_tree().get_current_scene().name
-	if curScene != lastScene and curScene == "menu":
-		pr("Detected menu start, creating custom viewblocker.")
-		title_passed = false
+	if curScene != lastScene:
+		if portrait:
+			switch_aspect_ratio()
+		
+		if curScene == "menu":
+			pr("Detected menu start, creating custom viewblocker.")
+			title_passed = false
 	lastScene = curScene
 	
 	if not title_passed:
@@ -80,19 +86,58 @@ func _process(delta):
 	var ratio = 16.0/9.0
 	
 	var sz = Vector2(root.get_size())
-	if curScene == "mp_lobby" or not config["wideScreen"] or sz.x < sz.y * ratio:
+	if curScene == "mp_lobby" or not config["wideScreen"]:
 		sz.x = sz.y * ratio
 	var mul = config["renderScale"]
-	sz = sz * vanilla_size.y / sz.y
-	var aspectX = sz.x/sz.y
-	var canvSize = sz.y/float(vanilla_size.y)*mul
-	var relAspX = (aspectX-ratio)
+	if sz.x >= sz.y * ratio:
+		if portrait:
+			portrait = false
+			switch_aspect_ratio()
+		sz = sz * vanilla_size.y / sz.y
+		var aspectX = sz.x/sz.y
+		var canvSize = sz.y/float(vanilla_size.y)*mul
+		var relAspX = (aspectX-ratio)
+		
+		root.set_canvas_transform(Transform2D(Vector2(canvSize,0),Vector2(0,canvSize),Vector2((relAspX/2.0)*sz.y*mul,0)))
+	else:
+		if not portrait:
+			portrait = true
+			switch_aspect_ratio()
+		sz = sz * vanilla_size.x / sz.x
+		var aspectY = sz.y/sz.x
+		var canvSize = sz.x/float(vanilla_size.x)*mul
+		var relAspY = (aspectY-1.0/ratio)
+		
+		root.set_canvas_transform(Transform2D(Vector2(canvSize,0),Vector2(0,canvSize),Vector2(0,(relAspY/2.0)*sz.x*mul)))
 		
 	root.content_scale_size = Vector2i(sz * mul)
-	root.set_canvas_transform(Transform2D(Vector2(canvSize,0),Vector2(0,canvSize),Vector2((relAspX/2.0)*sz.y*mul,0)))
 	
 	for i in forceCoverTargets:
 		var targ = safe_get(i)
 		if targ:
-			targ.position = Vector2(-2147483647,-2147483647)
-			targ.scale = Vector2(2147483647,2147483647)
+			targ.position = Vector2(-MAX,-MAX)
+			targ.scale = Vector2(MAX,MAX)
+
+func switch_aspect_ratio():
+	var scene = get_tree().get_current_scene()
+	var keep = Camera3D.KEEP_WIDTH if portrait else Camera3D.KEEP_HEIGHT
+	var amt = 1.56
+	var mult = amt if portrait else 1.0/amt
+	var camera = scene.get_node_or_null("Camera")
+	if camera != null:
+		camera.keep_aspect = keep
+		camera.fov *= mult
+	var cameraManager = scene.get_node_or_null("standalone managers/camera manager")
+	if cameraManager != null:
+		for socket in cameraManager.socketArray:
+			socket.fov *= mult
+	for animation_player in scene.find_children("*", "AnimationPlayer"):
+		for animation in animation_player.libraries[""]._data:
+			var animation_object = animation_player.libraries[""]._data[animation]
+			for i in range(animation_object.get_track_count()):
+				var path = animation_object.track_get_path(i)
+				if path.get_name(path.get_name_count() - 1) + ":" + path.get_concatenated_subnames() == "Camera:fov":
+					for j in range(animation_object.track_get_key_count(i)):
+						var value = animation_object.track_get_key_value(i,j)
+						value *= mult
+						animation_player.libraries[""]._data[animation].track_set_key_value(i,j,value)
