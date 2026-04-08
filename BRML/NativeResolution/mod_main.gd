@@ -121,7 +121,7 @@ func _process(delta):
 func switch_aspect_ratio():
 	var scene = get_tree().get_current_scene()
 	var keep = Camera3D.KEEP_WIDTH if portrait else Camera3D.KEEP_HEIGHT
-	var amt = 1.56
+	var amt = 1.562
 	var mult = amt if portrait else 1.0/amt
 	var camera = scene.get_node_or_null("Camera")
 	if camera != null:
