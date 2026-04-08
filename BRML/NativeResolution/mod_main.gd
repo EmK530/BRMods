@@ -89,7 +89,7 @@ func _process(delta):
 	if curScene == "mp_lobby" or not config["wideScreen"]:
 		sz.x = sz.y * ratio
 	var mul = config["renderScale"]
-	if sz.x >= sz.y * ratio:
+	if sz.x >= sz.y * ratio or not config["wideScreen"]:
 		if portrait:
 			portrait = false
 			switch_aspect_ratio()
